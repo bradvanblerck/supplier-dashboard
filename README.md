@@ -39,6 +39,8 @@ Dates use the format `YYYY-MM-DD`. To recreate the sample data, run `python3 scr
 2. Each factor is rescaled from 0 (worst supplier) to 1 (best supplier).
 3. Score = weighted average × 100. The default weights are Price 35%, On-time 25%, Quality 25%, and Lead time 15%.
 
+The table also shows each supplier's **total spend** (unit price × quantity, added up over the selected period and material). It's there for context and doesn't count toward the score.
+
 ## Files
 
 - `index.html`: page layout

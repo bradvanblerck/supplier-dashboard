@@ -27,6 +27,7 @@ const days = (a, b) => (new Date(b) - new Date(a)) / 86400000;
 const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
 const signed = (x, d = 1) => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%";
 const money = x => "$" + x.toLocaleString(undefined, { maximumFractionDigits: 0 });
+const moneyShort = x => x >= 1e6 ? "$" + (x / 1e6).toFixed(1) + "M" : x >= 1e3 ? "$" + (x / 1e3).toFixed(0) + "K" : money(x);
 const monthLabel = m => new Date(m + "-01T00:00").toLocaleDateString(undefined, { month: "short", year: "2-digit" });
 const seriesColor = i => css(`--s${(i % 8) + 1}`);
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -88,6 +89,7 @@ function computeRanking() {
       onTime: os.filter(o => o.onTime).length / os.length,
       defect: os.reduce((s, o) => s + o.units_defective, 0) / qty,
       lead: mean(os.map(o => o.leadDays)),
+      spend: os.reduce((s, o) => s + o.unit_price * o.quantity, 0),
     };
   });
 
@@ -199,6 +201,7 @@ function renderRanking() {
       <td class="num">${pct(r.onTime, 0)}</td>
       <td class="num">${pct(r.defect)}</td>
       <td class="num">${r.lead.toFixed(0)} d</td>
+      <td class="num">${moneyShort(r.spend)}</td>
     </tr>`).join("");
 }
 
