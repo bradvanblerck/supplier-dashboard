@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supplier Dashboard</title>
+  <meta name="description" content="Rank raw-material suppliers on price, delivery, quality and lead time, and watch price trends.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Supplier Dashboard</h1>
+      <p class="sub">Raw materials · sample data</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filters">
+      <label>Period
+        <select id="f-period">
+          <option value="6">Last 6 months</option>
+          <option value="12" selected>Last 12 months</option>
+          <option value="24">Last 24 months</option>
+        </select>
+      </label>
+      <label>Material
+        <select id="f-material"><option value="">All materials</option></select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section class="kpis" id="kpis" aria-label="Key figures"></section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Supplier ranking</h2>
+        <p class="hint">The score runs from 0 to 100. Each factor is scaled against the other suppliers. Click a row for details.</p>
+      </div>
+      <details class="weights" open>
+        <summary>Weights</summary>
+        <div class="sliders" id="sliders"></div>
+      </details>
+      <div class="table-wrap">
+        <table class="rank" id="rank">
+          <thead>
+            <tr>
+              <th data-k="rank" class="num">#</th>
+              <th data-k="name">Supplier</th>
+              <th data-k="score" class="num">Score</th>
+              <th data-k="price" class="num" title="Average price vs. market average for the same material and month">Price vs mkt</th>
+              <th data-k="onTime" class="num">On-time</th>
+              <th data-k="defect" class="num">Defects</th>
+              <th data-k="lead" class="num" title="Days from order to delivery">Lead time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2 id="trend-title">Price trend</h2>
+        <p class="hint" id="trend-hint"></p>
+      </div>
+      <div class="chart-box"><canvas id="trend" aria-label="Price trend chart" role="img"></canvas></div>
+      <details class="data-view">
+        <summary>Show as table</summary>
+        <div class="table-wrap" id="trend-table"></div>
+      </details>
+    </section>
+
+    <section class="card" id="detail" hidden>
+      <div class="card-head">
+        <h2 id="detail-title">Supplier detail</h2>
+        <button type="button" class="close" id="detail-close" aria-label="Close detail">×</button>
+      </div>
+      <p class="hint" id="detail-meta"></p>
+      <div class="two">
+        <div>
+          <h3>Price vs market (%)</h3>
+          <div class="chart-box small"><canvas id="d-price" role="img" aria-label="Supplier price versus market by month"></canvas></div>
+        </div>
+        <div>
+          <h3>On-time delivery (%)</h3>
+          <div class="chart-box small"><canvas id="d-ontime" role="img" aria-label="Supplier on-time delivery by month"></canvas></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>This is sample data. Edit <code>data/*.csv</code> to use your own.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

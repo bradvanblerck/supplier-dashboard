@@ -1,0 +1,9 @@
+supplier_id,name,region,materials
+S01,Northfield Metals,North America,Steel|Aluminum|Copper
+S02,Harbor Steelworks,Asia,Steel|Aluminum
+S03,Redline Copper Co.,South America,Copper
+S04,Vantage Polymers,Europe,Plastic resin
+S05,Pacific Resin Supply,Asia,Plastic resin|Aluminum
+S06,Timberline Forest,North America,Lumber
+S07,Cascade Wood Group,North America,Lumber
+S08,Meridian Alloys,Europe,Copper|Steel|Aluminum
