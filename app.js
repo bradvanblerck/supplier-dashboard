@@ -3,8 +3,8 @@
 
 const FACTORS = [
   // key, label, default weight, true if a lower value is better
-  { key: "price",  label: "Price",           weight: 35, lowerBetter: true  },
-  { key: "onTime", label: "On-time delivery", weight: 25, lowerBetter: false },
+  { key: "price",  label: "Price",           weight: 50, lowerBetter: true  },
+  { key: "onTime", label: "On-time delivery", weight: 65, lowerBetter: false },
   { key: "defect", label: "Quality",          weight: 25, lowerBetter: true  },
   { key: "lead",   label: "Lead time",        weight: 15, lowerBetter: true  },
 ];
